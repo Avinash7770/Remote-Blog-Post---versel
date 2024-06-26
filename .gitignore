@@ -114,7 +114,7 @@ dist
 # FuseBox cache
 .fusebox/
 
-# DynamoDB Local files
+# DynamoDB Local filesgeg
 .dynamodb/
 
 # TernJS port file
