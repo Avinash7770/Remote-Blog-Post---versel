@@ -2,16 +2,19 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 const port = 4000;
 
 // Update database connection details here
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 const db = new pg.Client({
-  user: "default",
-  host: "ep-shrill-smoke-a1t8inbs-pooler.ap-southeast-1.aws.neon.tech",
-  database: "verceldb",
-  password: "y8octf3OYdki",
+  user: PGUSER,
+  host: PGHOST,
+  database: PGDATABASE,
+  password: PGPASSWORD,
   port: 5432,
   ssl: {
     rejectUnauthorized: false, // Disable SSL certificate verification temporarily
