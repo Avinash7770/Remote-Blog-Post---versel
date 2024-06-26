@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Blog</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1><%= heading %></h1>
+
+    <% if (locals.post) { %>
+      <form id="editForm" method="post" action="/api/posts/<%=post.id%>">
+        <input type="text" name="title" value="<%=post.title %>">
+        <textarea name="content" rows="10"><%=post.content %></textarea>
+        <input type="text" name="author" value="<%=post.author %>">
+        <input type="password" name="password" placeholder="Password" required>
+        <button class="full-width" type="submit"><%= submit %></button>
+      </form>
+    <% } else { %>
+      <form id="newPostForm" method="post" action="/api/posts">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="content" placeholder="Content" required rows="10"></textarea>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button class="full-width" type="submit"><%= submit %></button>
+      </form>
+    <% } %>
+
+    <% if (locals.errorMessage) { %>
+      <script>
+        alert('<%= errorMessage %>');
+      </script>
+    <% } %>
+  </div>
+
+  <script>
+    document.getElementById('editForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          window.location.href = '/';
+        } else {
+          alert('Error updating post'); // Display alert on error
+        }
+      } catch (error) {
+       // console.error('Error:', error);
+        //alert('Error updating post'); // Display alert on catch block error
+      }
+    });
+  </script>
+</body>
+
+</html>
