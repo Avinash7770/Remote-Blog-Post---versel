@@ -29,9 +29,8 @@ coverage
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
-# Bower dependency directory (https://bower.io/)jreo
+# Bower dependency directory (https://bower.io/)
 bower_components
-
 
 # node-waf configuration
 .lock-wscript
@@ -114,7 +113,7 @@ dist
 # FuseBox cache
 .fusebox/
 
-# DynamoDB Local filesgeg
+# DynamoDB Local files
 .dynamodb/
 
 # TernJS port file
