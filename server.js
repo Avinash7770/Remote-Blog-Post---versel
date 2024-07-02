@@ -69,7 +69,7 @@ app.post("/api/posts/:id", async (req, res) => {
 app.delete("/api/posts/delete/:id", async (req, res) => {
   try {
     const { password } = req.body;
-    const response = await axios.delete(`http://localhost:4000/posts/${req.params.id}`, {
+    const response = await axios.delete(`${API_URL}/posts/${req.params.id}`, {
       data: { password },
       headers: { 'Content-Type': 'application/json' },
     });
